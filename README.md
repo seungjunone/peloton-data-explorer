@@ -1,19 +1,37 @@
-# peloton_workout_analytics
-Demo of Peloton data extraction via API calls, data pipelines, etc
+# Extracting and Analyzing Peloton Data with Python
 
 
+## Introduction
+At the height of the COVID lockdown, a Peloton bike entered my life and quickly became my go-to cardio workout. Since then, I've explored their strength, rowing, and stretching classes, making Peloton a core part of my fitness routine. But just how "avid" a user am I? To find out, I decided to dive deep into my Peloton data and see what insights I could uncover.
 
-# Data Science Handbook
 
-The [Data Science Handbook](https://handbook.datascience.2u.com/) is a collection of information on the data science team at 2U - who we are, what we do, and how we work.
+## Structure
 
-The handbook is written in Markdown and served as a [static website](https://handbook.datascience.2u.com/) hosted using [Github Pages](https://pages.github.com/). We use [MkDocs](https://www.mkdocs.org/) to generate the site from markdown and the popular [Material](https://squidfunk.github.io/mkdocs-material/) theme for the site layout and design.
+### Quick Guides
+This series of Jupyter Notebooks in `quick-guides` directory provides a step-by-step guide to accessing, processing, and analyzing your Peloton data via the public API.  You'll learn how to connect to the API, extract data using various endpoints, and transform it into a usable format to perform insightful analyses. 
 
-We encourage you to review the [mkdocs introductory tutorial](https://www.mkdocs.org/getting-started/) and [mkdocs-material getting started](https://squidfunk.github.io/mkdocs-material/getting-started/) page to learn about the technology behind the handbook. These pages will get you up-to-speed on how to install mkdoc, add/modify pages, and serve the pages in a built-in dev-server. Additionally, the [Material reference](https://squidfunk.github.io/mkdocs-material/reference/) page contains code snippets describing how to add diagrams, codeblocks, data tables, and more.
+The notebooks are designed to be worked through sequentially, as later notebooks build upon the concepts, functions, and workflow established in earlier ones. While it's recommended to follow the series from start to finish, you are welcome to explore individual notebooks based on your specific interests.
 
-## Hosting
+The following table provides a brief overview of each notebook in the series:
 
-The Data Science Handbook is hosted using Github Pages. The repository is configured to serve the site from the [gh-pages](https://github.com/2uinc/data-science-handbook/tree/gh-pages) branch. See the [repository settings](https://github.com/2uinc/data-science-handbook/settings/pages) to update the configuration.
+| Notebook Title | Summary |
+| --- | --- |
+| [Peloton Public API Overview](./quick-guides/01_peloton-public-api-overview.ipynb) | This notebook introduces the Peloton public API and demonstrates how to authenticate and extract data. It uses the `requests` package for API calls and focuses on the user overview endpoint as a practical example for extraction and transformation. | 
+| [User Overview End Point](./quick-guides/02_endpoint-user-overview.ipynb) | This notebook revisits the user overview endpoint, building upon the previous notebook. It introduces reusable functions for API calls and data transformation. Robust error handling and logging are incorporated to ensure graceful failure in case of issues. |
+
+
+### Codes
+The `codes` directory houses reusable functions developed and introduced in the Quick Start Guides. These functions are organized into modules based on their functionality, making them easy to locate and reuse in your analysis.  Leveraging these pre-built tools will significantly streamline your workflow and reduce code duplication.
+
+| Function Category | Summary |
+| --- | --- |
+| [API Toolkit](./codes/peloton_api_toolkit.py) | Contains functions for interacting with the Peloton API. This includes functions for authentication, making requests to various endpoints (e.g., user overview, workout details), and handling pagination. |
+| [Data Toolkit](./codes/peloton_data_toolkit.py) | Contains functions for cleaning, transforming, and preparing the data retrieved using the 
+api_toolkit.  This includes functions for handling missing values, converting data types (e.g., timestamps), filtering data based on specific criteria, and performing other data manipulation tasks |
+
+
+### Analysis
+
 
 ## Running Quick Guides on Jupyter Notebook
 
@@ -38,40 +56,3 @@ And add peloton credentials to bash_profile.
 export peloton_user_name="{ your username }"
 export peloton_password="{ your password }"
 ```
-
-
-See the [Makefile](./Makefile) for shell commands that simplify the process of building and serving the site. For example, run
-```Bash
-make open-dev-server
-```
-to build and serve the site.
-
-Alternatively you can build and serve the site using Docker. In order to enable plugins a custom image must be built. 
-
-1. Build the custom image:
-
-```Bash
-make build-custom-image
-```
-
-2. Build the site:
-
-```Bash
-make build-site-custom-image
-```
-
-3. Serve the site:
-
-```Bash
-make serve-site-custom-image
-```
-
-## How do I update the Data Science Handbook?
-
-To add a page, create a markdown file, place it in `/docs` folder, and map it in [mkdocs.yml](./mkdocs.yml). To update a page, update the corresponding markdown file.
-
-Once PR is approved and merged to `main` branch, the change will automatically be reflected in github page [Github Actions](https://squidfunk.github.io/mkdocs-material/publishing-your-site/#with-github-actions).
-
-Please read the [handbook guide](https://handbook.datascience.2u.com/guide/) before submitting a PR.
- 
-For common page types, check the `/templates` directory to find a template that can be copied and easily updated for a new page.
